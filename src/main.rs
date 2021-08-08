@@ -50,6 +50,16 @@ async fn main() {
       DARKPURPLE,
     );
 
+    let delta = get_frame_time();
+
+    // バーを動かす
+    if is_key_down(KeyCode::Right) && platform_x < SCR_W - platform_width / 2.0 {
+      platform_x += 3.0 * delta;
+    }
+    if is_key_down(KeyCode::Left) && platform_x > platform_width / 2.0 {
+      platform_x -= 3.0 * delta;
+    }
+
     next_frame().await
   }
 }
