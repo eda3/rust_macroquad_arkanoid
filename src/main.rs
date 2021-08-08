@@ -8,6 +8,12 @@ async fn main() {
   const SCR_H: f32 = 20.;
 
   let mut blocks: [[bool; BLOCKS_W]; BLOCKS_H] = [[true; BLOCKS_W]; BLOCKS_H];
+  let mut ball_x = 12.0;
+  let mut ball_y = 7.0;
+
+  let mut platform_x = 10.0;
+  let platform_width = 5.0;
+  let platform_height = 0.2;
 
   set_camera(&Camera2D {
     zoom: vec2(1.0 / SCR_W * 2.0, -1.0 / SCR_H * 2.0),
@@ -31,6 +37,18 @@ async fn main() {
         }
       }
     }
+
+    // ボールの描画
+    draw_circle(ball_x, ball_y, 0.2, RED);
+
+    // バーの描画
+    draw_rectangle(
+      platform_x - platform_width / 2.0,
+      SCR_H - platform_height,
+      platform_width,
+      platform_height,
+      DARKPURPLE,
+    );
 
     next_frame().await
   }
